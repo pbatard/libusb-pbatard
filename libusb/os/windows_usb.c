@@ -4112,7 +4112,7 @@ static int composite_submit_control_transfer(struct usbi_transfer *itransfer)
 	struct libusb_transfer *transfer = __USBI_TRANSFER_TO_LIBUSB_TRANSFER(itransfer);
 	struct libusb_context *ctx = DEVICE_CTX(transfer->dev_handle->dev);
 	struct windows_device_priv *priv = __device_priv(transfer->dev_handle->dev);
-	int i, pass;
+	int i;
 
 	// Interface shouldn't matter for control, but it does in practice, with Windows'
 	// restrictions with regards to accessing HID keyboards and mice. Try a 2 pass approach
