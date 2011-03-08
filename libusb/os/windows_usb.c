@@ -2674,6 +2674,7 @@ static int winusb_release_interface(struct libusb_device_handle *dev_handle, int
 static int get_valid_interface(struct libusb_device_handle *dev_handle, int api_id)
 {
 	struct windows_device_handle_priv *handle_priv = __device_handle_priv(dev_handle);
+	struct windows_device_priv *priv = __device_priv(dev_handle->dev);
 	int i;
 
 	if ((api_id < USB_API_WINUSB) || (api_id > USB_API_HID)) {
@@ -4112,7 +4113,7 @@ static int composite_submit_control_transfer(struct usbi_transfer *itransfer)
 	struct libusb_transfer *transfer = __USBI_TRANSFER_TO_LIBUSB_TRANSFER(itransfer);
 	struct libusb_context *ctx = DEVICE_CTX(transfer->dev_handle->dev);
 	struct windows_device_priv *priv = __device_priv(transfer->dev_handle->dev);
-	int i;
+	int i, pass;
 
 	// Interface shouldn't matter for control, but it does in practice, with Windows'
 	// restrictions with regards to accessing HID keyboards and mice. Try a 2 pass approach
