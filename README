@@ -1,3 +1,7 @@
+*** OBSOLETE ***
+This branch is now obsolete as Windows HID support has now been reinstated
+in mainline libusbx. Please go to http://libusbx.org.
+
 libusb
 ======
 
